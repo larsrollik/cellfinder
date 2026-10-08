@@ -8,7 +8,7 @@ env:
 
 jobs:
   linting:
-    runs-on: ubuntu-26.04
+    runs-on: ubuntu-24.04
     steps:
       - uses: brainglobe/actions/lint@v1
 
@@ -19,7 +19,7 @@ jobs:
       matrix:
         # Run all supported Python versions on linux
         python-version: ["3.7", "3.8", "3.9"]
-        os: [ubuntu-26.04]
+        os: [ubuntu-24.04]
         include:
           # Include one windows run
           - os: windows-latest
@@ -32,7 +32,7 @@ jobs:
 
   deploy:
     needs: test
-    runs-on: ubuntu-26.04
+    runs-on: ubuntu-24.04
     if: contains(github.ref, 'tags')
     steps:
       - uses: actions/checkout@v2
@@ -54,7 +54,7 @@ jobs:
 
   build-and-push-docker:
     needs: deploy
-    runs-on: ubuntu-26.04
+    runs-on: ubuntu-24.04
     permissions:
       contents: read
       packages: write
